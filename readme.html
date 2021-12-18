@@ -20,12 +20,10 @@
 </div>
 
 <br>
-<h3>
-Run in local environment with Docker
-</h3>
+
 <div>
- The project is dockerized. To run the project in the local environment, it is sufficient to type "docker compose build" and then "docker compose up" in the terminal in the home directory. The API project will run on port 8000, and the dashboard project will run on port 3000.   
- </dvi>
+    If you want to use the project in your local environment, you must write 'nodemon perfAnalitics.server.js' for the API project, and if you want to use the dashboard project, you must use the 'npm start' command.
+</div>
 <br>
 <h3>
     PerfAnalitics API
@@ -46,16 +44,16 @@ Run in local environment with Docker
         <dd>- fcp</dd>
         <dd>- domLoad</dd>
         <dd>- windowLoad</dd>
+        
       </dl>
 </div>
 
 <h3>PerfAnalitics Script</h3>
 
 Paste the code at the bottom of the body field on your website's index.html page
-<br>
-It just a 1 kb before minifed
+
 ```html
-<script>window.onload=function(){let e={url:window.location.host,date:(new Date).getTime(),ttfb:window.performance.timing.responseStart-window.performance.timing.requestStart,fcp:window.performance.timing.responseStart-window.performance.timing.requestStart,domLoad:window.performance.timing.domComplete-window.performance.timing.domLoading,windowLoad:Date.now()-window.performance.timing.navigationStart};var n=new XMLHttpRequest;n.open("POST","https://young-garden-19393.herokuapp.com/sendMetrics",!0),n.setRequestHeader("Content-Type","application/json"),n.send(JSON.stringify(e))};</script>
+<script>window.onload=function(){var n={url:window.location.host,date:(new Date).getTime(),ttfb:window.performance.timing.responseStart-window.performance.timing.requestStart,fcp:window.performance.timing.responseStart-window.performance.timing.requestStart,domLoad:window.performance.timing.domComplete-window.performance.timing.domLoading,windowLoad:window.performance.timing.loadEventEnd-window.performance.timing.navigationStart},e=new XMLHttpRequest;e.open('POST','http://localhost:8000/sendMetrics',!0),e.setRequestHeader('Content-Type','application/json'),e.send(JSON.stringify(n))};</script>
 ```
 
 It will pass the data to the site perfAnalitics.api

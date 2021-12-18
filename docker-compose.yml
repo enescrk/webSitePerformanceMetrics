@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+  dashboard:
+    image: perfanalitics:dev
+    build:
+      dockerfile: ./perfAnalitics.dashboard/perfanalitics/Dockerfile
+    ports:
+      - "3000:80"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  api:
+    image: perfanalitics.api:dev
+    build:
+      context: .
+      dockerfile: ./perfAnalitics.api/Dockerfile
+    ports:
+      - "8000:8000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
